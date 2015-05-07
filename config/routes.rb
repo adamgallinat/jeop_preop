@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :show]
     get 'categories/by_season/:id' => 'categories#by_season'
     get 'categories/by_airdate/:date' => 'categories#by_airdate'
+    get 'new_game' => 'categories#new_game'
     resources :clues, only: [:index, :show]
   end
 
