@@ -46,17 +46,11 @@ var requestEachSeason = function(seasons) {
 
 // EPISODE FUNCTION
 
-var processEpisode = function(episodeUrl, seasonNumber, airDate) {
-	request({
-		url: episodeUrl,
-		method: 'GET'
-	}, function(err, res, body) {
-		$ = cheerio.load(body);
-		var first_round_categories = $('#jeopardy_round .category_name');
-		var categories = [];
-		for (var i = 0; i < first_round_categories.length; i++) {
+var getRoundOne = function(categoryEls, seasonNumber, airDate) {
+	var categories = [];
+		for (var i = 0; i < categoryEls.length; i++) {
 			var category = {
-				title: $(first_round_categories[i]).text(),
+				title: $(categoryEls[i]).text(),
 				season: seasonNumber,
 				air_date: airDate,
 				round: 'jeopardy'
@@ -88,7 +82,56 @@ var processEpisode = function(episodeUrl, seasonNumber, airDate) {
 				}
 				Clue.bulkCreate(cluesToUpload);
 			});
+};
 
+var getRoundTwo = function(categoryEls, seasonNumber, airDate) {
+	var categories = [];
+		for (var i = 0; i < categoryEls.length; i++) {
+			var category = {
+				title: $(categoryEls[i]).text(),
+				season: seasonNumber,
+				air_date: airDate,
+				round: 'double jeopardy'
+			};
+			categories.push(category);
+		}
+		Category.bulkCreate(categories, {returning: true})
+			.then(function(savedCategories) {
+				var categoryIDs = savedCategories.map(function(savedCategory) {
+					return savedCategory.get('id');
+				});
+
+				var clues = [];
+				var second_round_clues = $('#double_jeopardy_round .clue');
+				for (var j = 0; j < second_round_clues.length; j++) {
+					clues.push(returnHashOfClue($(second_round_clues[j])));
+				}
+				
+				var clueIndex = 0;
+				var cluesToUpload = [];
+				for (var row = 0; row < 5; row++) {
+					for (var col = 0; col < 6; col++) {
+						var currentClue = clues[clueIndex];
+						currentClue.category_id = categoryIDs[col];
+						currentClue.value = (row+1) * 200;
+						cluesToUpload.push(currentClue);
+						clueIndex++;
+					}
+				}
+				Clue.bulkCreate(cluesToUpload);
+			});
+};
+
+var processEpisode = function(episodeUrl, seasonNumber, airDate) {
+	request({
+		url: episodeUrl,
+		method: 'GET'
+	}, function(err, res, body) {
+		$ = cheerio.load(body);
+		var first_round_categories = $('#jeopardy_round .category_name');
+		getRoundOne(first_round_categories, seasonNumber, airDate);
+		var second_round_categories = $('#double_jeopardy_round .category_name');
+		getRoundTwo(second_round_categories, seasonNumber, airDate);
 	});
 };
 
