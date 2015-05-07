@@ -1,1 +1,6 @@
 <h1>HELLO TO JEO.P.I.</h1>
+<% if current_user %>
+	<p><span>Welcome back, <%= User.find(session[:current_user]).username %>!<span>
+	<span> | <%= link_to 'Log Out', sessions_path, method: :delete %>
+	</p>
+<% end %>
