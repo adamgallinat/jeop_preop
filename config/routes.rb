@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   root 'application#index'
 
-  resources :categories, only: [:index, :show]
-  get 'categories/by_season/:id' => 'categories#by_season'
-  get 'categories/by_airdate/:date' => 'categories#by_airdate'
-
-  resources :clues, only: [:index, :show]
+  namespace :api, defaults:{format: 'json'} do
+    resources :categories, only: [:index, :show]
+    get 'categories/by_season/:id' => 'categories#by_season'
+    get 'categories/by_airdate/:date' => 'categories#by_airdate'
+    resources :clues, only: [:index, :show]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

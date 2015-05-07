@@ -1,0 +1,24 @@
+module Api
+	class CategoriesController < ApplicationController
+
+		def index
+			@categories = Category.all
+			render json: @categories.to_json(include: :clues)
+		end
+
+		def show
+			@category = Category.find(params[:id])
+			render json: @category.to_json(include: :clues)
+		end
+
+		def by_season
+			@categories = Category.where(season: params[:id])
+			render json: @categories.to_json(include: :clues)
+		end
+
+		def by_airdate
+			@categories = Category.where(air_date: params[:date])
+			render json: @categories.to_json(include: :clues)
+		end
+	end
+end
