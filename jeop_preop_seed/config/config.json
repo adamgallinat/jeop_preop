@@ -1,0 +1,17 @@
+{
+  "development": {
+    "database": "jeop_preop_app_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "database": "jeop_preop_app_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "database": "jeop_preop_app_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
