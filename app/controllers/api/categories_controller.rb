@@ -20,5 +20,14 @@ module Api
 			@categories = Category.where(air_date: params[:date])
 			render json: @categories.to_json(include: :clues)
 		end
+
+		def new_game
+			@round_one = Category.generate_round('jeopardy')
+			@round_two = Category.generate_round('double jeopardy')
+
+			@categories = @round_one + @round_two
+
+			render json: @categories.to_json(include: :clues)
+		end
 	end
 end
