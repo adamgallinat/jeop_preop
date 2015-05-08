@@ -14,5 +14,7 @@ App.Views.Clue = Backbone.View.extend({
 		App.clueModal.model = this.model;
 		App.clueModal.render();
 		this.$el.find('.value').remove();
+		var question = this.model.get('question');
+		App.read(question);
 	}
 });

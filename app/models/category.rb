@@ -11,7 +11,10 @@ class Category < ActiveRecord::Base
 			is_valid = true
 			
 			category.clues.each do |clue|
-				if clue.question == ""
+				if clue.question == ''
+					is_valid = false
+				end
+				if clue.question.include? '<a href'
 					is_valid = false
 				end
 			end

@@ -6,6 +6,9 @@ $(function() {
 		});
 		App.clueModal = new App.Views.ClueModal({model: new App.Models.Clue})
 		$('#score').html(0);
+		window.speechSynthesis.onvoiceschanged = function () {
+			App.voices = speechSynthesis.getVoices();
+		}
 	}
 });
 
@@ -43,4 +46,20 @@ App.removePoints = function(amount) {
 	var score = parseInt($('#score').html());
 	score -= amount;
 	$('#score').html(score);
+};
+
+App.read = function(script) {
+	script.split('<br />').join(' ');
+
+	// var msg = new SpeechSynthesisUtterance(script);
+	// var voices = window.speechSynthesis.getVoices();
+	// msg.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+	// window.speechSynthesis.speak(msg);
+
+	var speech = new SpeechSynthesisUtterance(script);
+  var voices = window.speechSynthesis.getVoices();
+  speech.default = false;
+  speech.voice = App.voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+  speech.lang = 'en-US'; //Also added as for some reason android devices used for testing loaded spanish language 
+  window.speechSynthesis.speak(speech);
 };
