@@ -13,3 +13,143 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+	margin: 0;
+}
+
+body {
+	text-align: center;
+	box-sizing: border-box;
+}
+
+.center {
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#round_one {
+	margin-bottom: 40px;
+}
+
+#board {
+	width: 90%;
+	margin: auto;
+	height: 605px;
+}
+
+.category {
+	width: 16.2%;
+	margin: 3px;
+	float: left;
+}
+
+.category_name_holder {
+	height: 40px;
+}
+
+.category_name {
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clue {
+	height: 110px;
+	width: 100%;
+	border: 1px solid black;
+	background-color: lightgrey;
+}
+
+.value {
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.question-holder {
+	padding: 10px;
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.answer-holder {
+	padding: 10px;
+	height: 100%;
+}
+
+.answer {
+	position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.placeholder {
+	height: 100%;
+	width: 100%;
+}
+
+#clueModal {
+	display: none;
+	position: absolute;
+	width: 90%;
+	height: 605px;
+	z-index: 100;
+	background-color: grey;
+}
+
+.solved-buttons {
+  position: relative;
+  top: 65%;
+  transform: translateY(-50%);
+  width: 60%;
+  margin: auto;
+}
+
+.solved-buttons > div {
+	display: inline-block;
+	width: 30%;
+	border: 1px solid black;
+	height: 60px;
+}
+
+.correct {	
+	float: left;
+}
+
+.incorrect {
+	float: right;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+	-webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}
