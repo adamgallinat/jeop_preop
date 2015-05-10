@@ -53,6 +53,7 @@ var requestEpisode = function(episodeUrl, seasonNumber, airDate) {
 	}, function(err, res, body) {
 		processFirstRoundCategories(body, seasonNumber, airDate);
 		processSecondRoundCategories(body, seasonNumber, airDate);
+		processFinalJeopardy(body, seasonNumber, airDate);
 	});
 };
 
@@ -103,6 +104,7 @@ var processFirstRoundClues = function(html, categories) {
 		});
 };
 
+
 var processSecondRoundCategories = function(html, seasonNumber, airDate) {
 	$ = cheerio.load(html);
 	var first_round_categories = $('#double_jeopardy_round .category_name');
@@ -150,6 +152,54 @@ var processSecondRoundClues = function(html, categories) {
 		});
 };
 
+var processFinalJeopardy = function(html, seasonNumber, airDate) {
+	$ = cheerio.load(html);
+	var categoryName = $('.final_round .category_name').text();
+	var newCategory = {
+		title: categoryName,
+		season: seasonNumber,
+		air_date: airDate,
+		round: 'final jeopardy'
+	};
+	Category.create(newCategory, {returning: true})
+		.then(function(savedCategory) {
+			$ = cheerio.load(html);
+			var categoryID = savedCategory.get('id');
+			var answerBody = $('#final_jeopardy_round .category').find('div').attr('onmouseover');
+			var answer = answerBody.split('<em class=\\"correct_response\\">')[1]
+														 .split('</em>')[0]
+														 .replace(/\\'/g, "'");
+			var newClue = {
+				question: $('#final_jeopardy_round .clue_text').text(),
+				answer: answer,
+				daily_double: false,
+				value: 0,
+				category_id: categoryID
+			};
+			Clue.create(newClue);
+		});
+};
+
+var returnHashOfClue = function(rawClue) {
+	if (!rawClue.html().trim()) {
+		return {answer: '', question: ''};
+	}
+	var questionBody = (rawClue.find('div').attr('onmouseout'));
+	var answerBody = (rawClue.find('div').attr('onmouseover'));
+	var question = questionBody.split("stuck', '")[1].split("')")[0]
+														 .replace(/\\\'/g, "'");
+	var answer = answerBody.split('<em class="correct_response">')[1].split('</em')[0];
+
+	var response = {answer: answer, question: question};
+	if (rawClue.find('.clue_value_daily_double').html()) {
+		response.daily_double = true;
+	} else {
+		response.daily_double = false;
+	}
+	return response;
+};
+
+// requestEpisode('http://www.j-archive.com/showgame.php?game_id=4886', 30, '2015-05-05');
 
 
 // var processEpisode = function(episodeUrl, seasonNumber, airDate) {
@@ -196,24 +246,3 @@ var processSecondRoundClues = function(html, categories) {
 // 			});
 // 	});
 // };
-
-var returnHashOfClue = function(rawClue) {
-	if (!rawClue.html().trim()) {
-		return {answer: '', question: ''};
-	}
-	var questionBody = (rawClue.find('div').attr('onmouseout'));
-	var answerBody = (rawClue.find('div').attr('onmouseover'));
-	var question = questionBody.split("stuck', '")[1].split("')")[0]
-														 .replace(/\\\'/g, "'");
-	var answer = answerBody.split('<em class="correct_response">')[1].split('</em')[0];
-
-	var response = {answer: answer, question: question};
-	if (rawClue.find('.clue_value_daily_double').html()) {
-		response.daily_double = true;
-	} else {
-		response.daily_double = false;
-	}
-	return response;
-};
-
-// processEpisode('http://www.j-archive.com/showgame.php?game_id=4886', 30, '2015-05-05');

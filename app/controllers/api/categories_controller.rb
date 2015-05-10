@@ -24,8 +24,9 @@ module Api
 		def new_game
 			@round_one = Category.generate_round('jeopardy')
 			@round_two = Category.generate_round('double jeopardy')
+			@round_three = Category.generate_round('final jeopardy')
 
-			@categories = @round_one + @round_two
+			@categories = @round_one + @round_two + @round_three
 
 			render json: @categories.to_json(include: :clues)
 		end

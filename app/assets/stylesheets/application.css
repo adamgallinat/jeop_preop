@@ -21,6 +21,7 @@
 body {
 	text-align: center;
 	box-sizing: border-box;
+	background-color: cornflowerblue;
 }
 
 .center {
@@ -96,8 +97,18 @@ body {
 	position: absolute;
 	width: 90%;
 	height: 605px;
-	z-index: 100;
+	z-index: 99;
 	background-color: grey;
+}
+
+.buzz-light {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: -30px;
+	left: -30px;
+	z-index: 100;
+	border: 30px solid white;
 }
 
 .solved-buttons {
