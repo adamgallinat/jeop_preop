@@ -49,7 +49,7 @@ App.removePoints = function(amount) {
 };
 
 App.read = function(script) {
-	script.split('<br />').join(' ');
+	script = script.split('<br />').join(' ');
 
 	// var msg = new SpeechSynthesisUtterance(script);
 	// var voices = window.speechSynthesis.getVoices();
