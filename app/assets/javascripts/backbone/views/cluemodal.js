@@ -50,7 +50,7 @@ App.Views.ClueModal = Backbone.View.extend({
 	},
 	flashBuzzDiv: function() {
 		$('.buzz-light').show();
-		var buzzerTimerLength = Math.random()*800 + 200;
+		var buzzerTimerLength = Math.random()*(this.model.get('value')*2) + 200;
 		setTimeout(function() {
 			if (this.buzzed) {
 				$('.buzz-light').css('border-color', 'lightgreen');
