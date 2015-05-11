@@ -10,6 +10,7 @@ class Category < ActiveRecord::Base
 				category = categories[index]
 				is_valid = true
 				
+				#occassional bug here. if clues == nil? "undefined method `clues' for nil:NilClass"
 				category.clues.each do |clue|
 					if clue.question == ''
 						is_valid = false

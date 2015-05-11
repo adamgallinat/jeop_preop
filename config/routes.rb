@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
+  get 'scores/by_user/:user_id' => 'scores#by_user'
   resources :scores
+
   
   get 'sessions' => 'sessions#new'
   post 'sessions' => 'sessions#create'
+  get 'current_user' => 'sessions#current_user'
   delete 'sessions' => 'sessions#destroy'
 
   get 'games' => 'game#index'

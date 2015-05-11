@@ -23,5 +23,22 @@ App.Views.Board = Backbone.View.extend({
 	renderFinalScore: function() {
 		var score = {score: parseInt($('#score').text())}
 		this.$el.html(this.finalScoreTemplate(score));
+	},
+	events: {
+		'click .save-score': 'saveScoreAndRestart'
+	},
+	saveScoreAndRestart: function() {
+		var score = parseInt($('#score').text());
+		$.get('/current_user')
+			.done(function(data) {
+				var currentUser = data.id;
+				$.post('/scores', {
+					value: score,
+					user_id: currentUser
+				})
+				.done(function(data) {
+					window.location.href = '/';
+				});
+			});
 	}
 });

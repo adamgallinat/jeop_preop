@@ -24,6 +24,11 @@ body {
 	background-color: cornflowerblue;
 }
 
+#score-graph {
+	height: 500px;
+	width: 1000px;
+}
+
 .center {
 	position: relative;
   top: 50%;
@@ -53,11 +58,11 @@ body {
 	margin: auto;
 }
 
-.category_name_holder {
+.category-name-holder {
 	height: 40px;
 }
 
-.category_name {
+.category-name {
 	position: relative;
   top: 50%;
   transform: translateY(-50%);

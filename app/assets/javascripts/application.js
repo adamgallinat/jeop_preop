@@ -17,6 +17,7 @@
 //= require underscore
 //= require backbone
 //= require handlebars
+//= require d3
 //= require_self
 //= require_tree ./backbone/routers
 //= require_tree ./backbone/models

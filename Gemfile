@@ -50,3 +50,4 @@ end
 
 gem 'rails-assets-underscore', source: 'https://rails-assets.org'
 gem 'rails-assets-backbone', source: 'https://rails-assets.org'
+gem 'd3-rails'
