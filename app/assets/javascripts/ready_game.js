@@ -22,10 +22,10 @@ var parseRounds = function() {
 	App.roundOne.set(roundOneClues);
 	App.roundTwo.set(roundTwoClues);
 	App.roundThree.set(roundThreeClues);
-	App.startRound(App.roundOne);
+	App.startGame(App.roundOne);
 };
 
-App.startRound = function(round) {
+App.startGame = function(round) {
 	App.board = new App.Views.Board({collection: round, el: '#board'});
 };
 
@@ -35,6 +35,11 @@ App.checkForEndOfRound = function() {
 			debugger;
 			App.board.collection = App.roundTwo;
 			App.board.render();
+		} else if ((App.board.collection === App.roundTwo) && (parseInt($('#score').text()) > 0)) {
+			App.board.collection = App.roundThree;
+			App.board.renderFinalJeopardy();
+		} else {
+			App.board.renderFinalScore();
 		}
 	}
 };
@@ -53,12 +58,8 @@ App.removePoints = function(amount) {
 
 App.read = function(script, callback) {
 	script = script.split('<br />').join(' ');
-
-	// var msg = new SpeechSynthesisUtterance(script);
-	// var voices = window.speechSynthesis.getVoices();
-	// msg.voice = voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
-	// window.speechSynthesis.speak(msg);
-
+	script = script.split('____').join('blank');
+	
 	var speech = new SpeechSynthesisUtterance(script);
   var voices = window.speechSynthesis.getVoices();
   speech.default = false;

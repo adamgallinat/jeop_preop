@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :scores
   
   get 'sessions' => 'sessions#new'
   post 'sessions' => 'sessions#create'

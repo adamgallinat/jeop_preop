@@ -46,6 +46,13 @@ body {
 	float: left;
 }
 
+.final {
+	width: 16.2%;
+	margin: 3px;
+	display: inline-block;
+	margin: auto;
+}
+
 .category_name_holder {
 	height: 40px;
 }
@@ -133,6 +140,7 @@ body {
 .incorrect {
 	float: right;
 }
+
 
 @-webkit-keyframes zoomIn {
   0% {
