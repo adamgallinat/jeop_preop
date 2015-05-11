@@ -11,10 +11,10 @@ App.Views.Clue = Backbone.View.extend({
 		'click' : 'renderQuestion'
 	},
 	renderQuestion: function() {
-		App.clueModal.model = this.model;
-		App.clueModal.render();
-		this.$el.find('.value').remove();
-		var question = this.model.get('question');
-		App.read(question);
+		if (this.$el.find('.value').is(':visible')) {
+			App.clueModal.model = this.model;
+			App.clueModal.render();
+			this.$el.find('.value').remove();
+		}
 	}
 });
