@@ -19,161 +19,147 @@
 }
 
 body {
-	text-align: center;
-	box-sizing: border-box;
-	background-color: cornflowerblue;
+	text-align: 						center;
+	box-sizing: 						border-box;
+	background-color: 			cornflowerblue;
+}
+
+.field_with_errors {
+	height: 								0;
+}
+.field_with_errors input {
+	border-color: 					red;
 }
 
 #score-graph {
-	height: 500px;
-	width: 1000px;
+	height: 								500px;
+	width: 									1000px;
 }
 
 .center {
-	position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+	position: 							relative;
+  top: 										50%;
+  transform: 							translateY(-50%);
 }
 
 #round_one {
-	margin-bottom: 40px;
+	margin-bottom: 					40px;
 }
 
 #board {
-	width: 90%;
-	margin: auto;
-	height: 605px;
+	width: 									90%;
+	margin: 								auto;
+	height: 								605px;
 }
 
 .category {
-	width: 16.2%;
-	margin: 3px;
-	float: left;
+	width: 									16.2%;
+	margin: 								3px;
+	float: 									left;
 }
 
 .final {
-	width: 16.2%;
-	margin: 3px;
-	display: inline-block;
-	margin: auto;
+	width: 									16.2%;
+	margin: 								3px;
+	display: 								inline-block;
+	margin: 								auto;
 }
 
 .category-name-holder {
-	height: 40px;
-}
-
-.category-name {
-	position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+	height: 								40px;
 }
 
 .clue {
-	height: 110px;
-	width: 100%;
-	border: 1px solid black;
-	background-color: lightgrey;
-}
-
-.value {
-	position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+	height: 								110px;
+	width: 									100%;
+	border: 								1px solid black;
+	background-color: 			lightgrey;
 }
 
 .question-holder {
-	padding: 10px;
-	position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+	padding: 								10px;
 }
 
 .answer-holder {
-	padding: 10px;
-	height: 100%;
-}
-
-.answer {
-	position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+	padding: 								10px;
+	height: 								100%;
 }
 
 .placeholder {
-	height: 100%;
-	width: 100%;
+	height: 								100%;
+	width: 									100%;
 }
 
 #clueModal {
-	display: none;
-	position: absolute;
-	width: 90%;
-	height: 605px;
-	z-index: 99;
-	background-color: grey;
+	display: 								none;
+	position: 							absolute;
+	width: 									90%;
+	height: 								605px;
+	z-index: 								99;
+	background-color: 			grey;
 }
 
 .buzz-light {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: -30px;
-	left: -30px;
-	z-index: 100;
-	border: 30px solid white;
+	position: 							absolute;
+	width: 									100%;
+	height: 								100%;
+	top: 										-30px;
+	left: 									-30px;
+	z-index: 								100;
+	border: 								30px solid white;
 }
 
 .solved-buttons {
-  position: relative;
-  top: 65%;
-  transform: translateY(-50%);
-  width: 60%;
-  margin: auto;
+  position: 							relative;
+  top: 										65%;
+  transform: 							translateY(-50%);
+  width: 									60%;
+  margin: 								auto;
 }
 
 .solved-buttons > div {
-	display: inline-block;
-	width: 30%;
-	border: 1px solid black;
-	height: 60px;
+	display: 								inline-block;
+	width: 									30%;
+	border: 								1px solid black;
+	height: 								60px;
 }
 
 .correct {	
-	float: left;
+	float: 									left;
 }
 
 .incorrect {
-	float: right;
+	float: 									right;
 }
 
 
 @-webkit-keyframes zoomIn {
   0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
+    opacity: 							0;
+    -webkit-transform: 		scale3d(.3, .3, .3);
+    transform: 						scale3d(.3, .3, .3);
   }
 
   50% {
-    opacity: 1;
+    opacity: 							1;
   }
 }
 
 @keyframes zoomIn {
   0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-    transform: scale3d(.3, .3, .3);
+    opacity: 							0;
+    -webkit-transform: 		scale3d(.3, .3, .3);
+    transform: 						scale3d(.3, .3, .3);
   }
 
   50% {
-    opacity: 1;
+    opacity: 							1;
   }
 }
 
 .zoomIn {
 	-webkit-animation-duration: 0.5s;
-  animation-duration: 0.5s;
-  -webkit-animation-name: zoomIn;
-  animation-name: zoomIn;
+  animation-duration: 				0.5s;
+  -webkit-animation-name: 		zoomIn;
+  animation-name: 						zoomIn;
 }

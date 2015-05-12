@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users
 
   get 'scores/by_user/:user_id' => 'scores#by_user'
-  resources :scores
+  resources :scores, only: [:create]
 
   
   get 'sessions' => 'sessions#new'
