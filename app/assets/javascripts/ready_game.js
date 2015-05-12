@@ -57,8 +57,9 @@ App.removePoints = function(amount) {
 };
 
 App.read = function(script, callback) {
-	script = script.split('<br />').join(' ');
-	script = script.split('____').join('blank');
+	script = script.replace('<br />', ' ');
+	script = script.replace(/__+/, 'blank');
+
 	
 	var speech = new SpeechSynthesisUtterance(script);
   var voices = window.speechSynthesis.getVoices();

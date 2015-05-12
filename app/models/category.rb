@@ -1,6 +1,21 @@
 class Category < ActiveRecord::Base
 	has_many :clues
 
+	validates_each :air_date do |record, attr, value|
+		binding.pry
+		begin
+			Date.parse(record.air_date)
+		rescue
+			record.errors.add(attr, 'invalid date')
+		end
+	end
+
+	validates :title, presence: true
+	validates :season, presence: true
+	validates :season, numericality: true
+	validates :air_date, presence: true
+	# validates :air_date, format: { with: /\A\d{4}\/\d{2}\/\d{2}\z/, message: 'not a valid date'}
+
 	def self.generate_round(round)
 		categories = Category.where(round: round)
 		if round != 'final jeopardy'
