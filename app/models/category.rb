@@ -2,7 +2,6 @@ class Category < ActiveRecord::Base
 	has_many :clues
 
 	validates_each :air_date do |record, attr, value|
-		binding.pry
 		begin
 			Date.parse(record.air_date)
 		rescue
