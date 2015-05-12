@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 			session[:current_user] = @user.id
 			redirect_to root_path
 		else
-			redirect_to sessions_path
+			render :new
 		end
 	end
 

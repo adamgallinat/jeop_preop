@@ -12,9 +12,10 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if (@user.save)
+			session[:current_user] = @user.id
 			redirect_to root_path
 		else
-			redirect_to new_user_path
+			render new_user_path
 		end
 	end
 

@@ -24,6 +24,7 @@ var renderScoreGraph = function(scores) {
 				bottom: 20,
 				left: 50
 			},
+			commasFormatter = d3.format(",.0f"),
 			xRange = d3.time.scale()
 								 .domain([new Date(scores[0].updated_at),
 								 	new Date(scores[scores.length-1].updated_at)])
@@ -44,6 +45,7 @@ var renderScoreGraph = function(scores) {
 										.scale(yRange)
 										.tickSize(5)
 										.orient('left')
+										.tickFormat(function(d) { return '$' + commasFormatter(d)})
 										.tickSubdivide(true);
 
 		vis.append('svg:g')
@@ -58,7 +60,6 @@ var renderScoreGraph = function(scores) {
 
 		var lineGenerator = d3.svg.line()
 			.x(function(d) {
-				console.log(d);
 				var date = new Date(d.updated_at);
 				return xRange(date);
 			})
