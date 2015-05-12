@@ -1,5 +1,6 @@
 var request = require('request'),
 		cheerio = require('cheerio'),
+		iconvlite = require('iconv-lite'),
 		models = require('./models'),
 		Category = models.categories,
 		Clue = models.clues;
@@ -25,7 +26,7 @@ request({
 var requestEachSeason = function(seasons) {
 	// seasons.forEach(function(season) {
 		request({
-			url: seasons[29].link,
+			url: seasons[30].link,
 			method: 'GET'
 		}, function(err, res, body) {
 			var $ = cheerio.load(body);
@@ -37,7 +38,7 @@ var requestEachSeason = function(seasons) {
 					airDate = airDate.split('aired')[1].substr(1);
 				}
 				if (linkString.indexOf('showgame') !== -1) {
-					requestEpisode(linkString, seasons[29].number, airDate);
+					requestEpisode(linkString, seasons[30].number, airDate);
 				}
 			}
 		});
@@ -49,8 +50,10 @@ var requestEachSeason = function(seasons) {
 var requestEpisode = function(episodeUrl, seasonNumber, airDate) {
 	request({
 		method: 'GET',
-		url: episodeUrl
+		url: episodeUrl,
+		encoding: null
 	}, function(err, res, body) {
+		body = iconvlite.decode(body, 'ISO-8859-1');
 		processFirstRoundCategories(body, seasonNumber, airDate);
 		processSecondRoundCategories(body, seasonNumber, airDate);
 		processFinalJeopardy(body, seasonNumber, airDate);
@@ -199,7 +202,7 @@ var returnHashOfClue = function(rawClue) {
 	return response;
 };
 
-// requestEpisode('http://www.j-archive.com/showgame.php?game_id=4886', 30, '2015-05-05');
+// requestEpisode('http://www.j-archive.com/showgame.php?game_id=4860', 30, '2015-08-8');
 
 
 // var processEpisode = function(episodeUrl, seasonNumber, airDate) {
