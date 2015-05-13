@@ -1,15 +1,8 @@
-<h1>Welcome to JeopPreop</h1>
 <% if current_user %>
-	<p><span>Welcome back, <%= User.find(session[:current_user]).username %>!<span>
-	<span> | <%= link_to 'Log Out', sessions_path, method: :delete %>
-	</p>
 	<div>
 		<%= link_to 'New Game!', games_path %>
 	</div>
 	<div id='score-container'>
 		<svg id='score-graph'></svg>
 	</div>
-<% else %>
-	<%= link_to 'Sign Up', new_user_path %>
-	<%= link_to 'Log In', sessions_path %>
 <% end %>
