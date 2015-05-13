@@ -6,6 +6,9 @@ App.Views.ClueModal = Backbone.View.extend({
 	},
 	render: function() {
 		this.buzzed = false;
+		var answer = this.model.get('answer');
+		this.model.set('answer', answer.replace('\\', ''));
+
 		if (App.board.collection !== App.roundThree) {
 			this.$el.html(this.template(this.model.toJSON()));
 			this.renderQuestion();

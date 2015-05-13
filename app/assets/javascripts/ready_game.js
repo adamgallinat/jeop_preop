@@ -82,5 +82,8 @@ App.read = function(script, callback) {
   });
   // speech.onend = callback;
   
-  window.speechSynthesis.speak(speech);
+  console.log(speech);
+  setTimeout(function() {
+  	window.speechSynthesis.speak(speech);
+  }, 200);
 };
