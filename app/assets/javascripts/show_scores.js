@@ -15,6 +15,7 @@ $(function() {
 
 var renderScoreGraph = function(scores) {
 	if (scores.length > 1) {
+		$('#score-container').prepend('<h2>Your Scores</h2>');
 		var vis = d3.select('#score-graph'),
 			WIDTH = 1000,
 			HEIGHT = 500,
