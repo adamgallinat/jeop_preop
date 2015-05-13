@@ -74,6 +74,9 @@ var renderScoreGraph = function(scores) {
 			.attr('stroke', 'blue')
 			.attr('stroke-width', 2)
 			.attr('fill', 'none');
+
+		vis.style('padding-left', '40px')
+			 .style('padding-right', '40px');
 	} else {
 		$('#score-container').prepend('<div>Play at least two games to view your progress!</div>');
 	}
