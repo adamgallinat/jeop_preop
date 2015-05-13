@@ -40,11 +40,11 @@ var renderScoreGraph = function(scores) {
 																	})]),
 			xAxis = d3.svg.axis()
 										.scale(xRange)
-										.tickSize(5)
+										.tickSize(3)
 										.tickSubdivide(true),
 			yAxis = d3.svg.axis()
 										.scale(yRange)
-										.tickSize(5)
+										.tickSize(3)
 										.orient('left')
 										.tickFormat(function(d) { return '$' + commasFormatter(d)})
 										.tickSubdivide(true);
