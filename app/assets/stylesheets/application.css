@@ -28,18 +28,25 @@
 	margin: 0;
 }
 
+a {
+	color: 									rgb(211, 178, 0);
+}
+a:visited {
+	color: 									rgb(211, 178, 0);
+}
+
 body {
 	text-align: 						center;
-	box-sizing: 						border-box;
+	/*box-sizing: 						border-box;*/
 	background-color: 			cornflowerblue;
-	font-family: Korinna;
-	font-weight: 900;
+	font-family: 						Korinna;
+	font-weight: 						900;
 }
 
 #navbar {
 	height: 50px;
 	border-bottom: 1px solid black;
-	background-color: cornflowerblue;
+	background-color: #0005CD;
 	box-shadow: 0px 4px 35px 0px rgba(0,0,0,0.75);
 	width: 100vw;
 	z-index: 100;
@@ -50,23 +57,42 @@ body {
 	float: left;
 	margin-left: 10px;
 	color: #FFD700;
-	text-shadow: 2px 2px #000000;
+	text-shadow: 2px 2px black;
 }
 
 #navbar #account-links {
 	float: right;
 	margin-right: 10px;
+	color: 				white;
+	text-shadow: 	2px 2px black;
 }
 
 #main {
 	margin-top: 20px;
 }
 
-#main a {
+#welcome-page h1 {
+	color: rgb(211, 178, 0);
+	text-shadow: 2px 2px black;
+	font-size: 60px;
+	margin-bottom: 10px;
+}
+
+#welcome-page .bold {
+	color: rgb(211, 178, 0);
+	text-shadow: 1px 1px black;
+}
+
+#new-game-link {
+	margin-bottom: 30px;
+}
+
+#new-game-link a {
 	font-family: Gyparody;
 	font-size: 60px;
-	color: #FFD700;
+	color: rgb(211, 178, 0);
 	text-shadow: 2px 2px #000000;
+	margin-bottom: 30px;
 }
 
 form input {
@@ -83,9 +109,6 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px white inset;
 }
 
-.field_with_errors {
-	height: 								0;
-}
 .field_with_errors input {
 	border-color: 					red;
 }
@@ -114,9 +137,30 @@ input:-webkit-autofill {
 }
 
 .category {
-	width: 									16.2%;
-	margin: 								3px;
+	width: 									16.6%;
+	/*margin: 								3px;*/
+	border-left: 						4px solid black;
 	float: 									left;
+	background-color: 			#0005CD;
+	box-sizing: 						border-box;
+}
+.category:last-child {
+	border-right: 					4px solid black;
+}
+
+.category-name-holder {
+	height: 								100px;
+	width: 									100%;
+	border-top: 						4px solid black;
+	font-size: 							26px;
+	line-height: 						95%;
+}
+
+.category-name {
+	width: 									90%;
+	margin: 								0 auto;
+	color: 									white;
+	text-shadow: 						2px 2px black;
 }
 
 .final {
@@ -124,34 +168,42 @@ input:-webkit-autofill {
 	margin: 								3px;
 	display: 								inline-block;
 	margin: 								auto;
+	background-color: 			#0005CD;
+	border-left: 						4px solid black;
+	border-right: 					4px solid black;
 }
 
-.category-name-holder {
-	height: 								100px;
-	width: 									100%;
-	border: 								1px solid black;
-	background-color: 			lightgrey;
-	font-size: 							30px;
-	line-height: 						95%;
+.wager-amount {
+	width: 									400px;
+	height: 								50px;
+	font-size: 							40px;
+	margin-bottom: 					30px;
 }
 
-.category-name {
-	width: 									90%;
+.wager-button {
+	width: 									300px;
 	margin: 								0 auto;
+	border: 								4px solid rgb(211, 178, 0);
+	color: 									rgb(211, 178, 0);
 }
 
 .clue {
 	height: 								100px;
 	width: 									100%;
-	border: 								1px solid black;
-	background-color: 			lightgrey;
+	border-top: 						4px solid black;
 	font-size: 							70px;
+	color: 									rgb(211, 178, 0);
+	text-shadow: 						2px 2px black;
+}
+.clue:last-child {
+	border-bottom: 					4px solid black;
 }
 
 .question-holder {
 	padding: 								10px;
 	width: 									90%;
 	margin: 								0 auto;
+	color: 									white;
 }
 
 .answer-holder {
@@ -159,6 +211,7 @@ input:-webkit-autofill {
 	height: 								100%;
 	width: 									90%;
 	margin: 								0 auto;
+	color: 									rgb(211, 178, 0)
 }
 
 .placeholder {
@@ -170,19 +223,22 @@ input:-webkit-autofill {
 	display: 								none;
 	position: 							absolute;
 	width: 									90%;
-	height: 								620px;
+	height: 								630px;
 	z-index: 								99;
-	background-color: 			grey;
+	background-color: 			#0005CD;
+	box-shadow: 						inset 0px 0px 200px #000000;
 	font-family: 						'Korinna', serif;
+	text-shadow: 						4px 4px black;
 	font-size: 							72px;
 }
 
 .buzz-light {
+	box-sizing: 						border-box;
 	position: 							absolute;
 	width: 									100%;
 	height: 								100%;
-	top: 										-30px;
-	left: 									-30px;
+	top: 										0px;
+	left: 									0px;
 	z-index: 								100;
 	border: 								30px solid white;
 }
@@ -198,16 +254,21 @@ input:-webkit-autofill {
 .solved-buttons > div {
 	display: 								inline-block;
 	width: 									30%;
-	border: 								1px solid black;
+	border: 								4px solid rgb(211,178,0);
+	box-shadow: 						4px 4px black;
 	height: 								60px;
+	font-size: 							28px;
 }
 
 .correct {	
-	float: 									left;
+	float: 									right;
+}
+.correct:active {
+	box-shadow: 						0px 0px black;
 }
 
 .incorrect {
-	float: 									right;
+	float: 									left;
 }
 
 

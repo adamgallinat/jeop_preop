@@ -20,13 +20,15 @@ request({
 	}
 	seasons.shift();
 	seasons.splice(6,1);
+	// seasons.splice(0,27);
+	// console.log(seasons);
 	requestEachSeason(seasons);
 });
 
 var requestEachSeason = function(seasons) {
 	// seasons.forEach(function(season) {
 		request({
-			url: seasons[30].link,
+			url: seasons[28].link,
 			method: 'GET'
 		}, function(err, res, body) {
 			var $ = cheerio.load(body);
@@ -38,7 +40,7 @@ var requestEachSeason = function(seasons) {
 					airDate = airDate.split('aired')[1].substr(1);
 				}
 				if (linkString.indexOf('showgame') !== -1) {
-					requestEpisode(linkString, seasons[30].number, airDate);
+					requestEpisode(linkString, seasons[28].number, airDate);
 				}
 			}
 		});
@@ -102,8 +104,6 @@ var processFirstRoundClues = function(html, categories) {
 					clueIndex++;
 				}
 			}
-			console.log(cluesToUpload);
-			// cluesToUpload.sort(compareClues);
 			// console.log(cluesToUpload);
 			Clue.bulkCreate(cluesToUpload);
 		});
@@ -202,17 +202,6 @@ var returnHashOfClue = function(rawClue) {
 		response.daily_double = false;
 	}
 	return response;
-};
-
-var compareClues = function(a, b) {
-	console.log(a.value, b.value);
-	if (a.value < b.value) {
-		return -1;
-	if (a.value > b.value) {
-		return 1;
-	}
-	return 0;
-	}
 };
 
 // requestEpisode('http://www.j-archive.com/showgame.php?game_id=4732', 30, '2015-08-8');
