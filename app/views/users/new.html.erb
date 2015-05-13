@@ -12,9 +12,9 @@
 	<%= f.label :password %><br>
 	<%= f.password_field :password %><br>
 	<br>
-	<%= f.label :password_confirmation %><br>
+	<%= f.label :password_confirmation, 'Re-enter Password' %><br>
 	<%= f.password_field :password_confirmation %><br>
 	<br>
-	<%= f.submit %>
+	<%= f.submit 'Sign Up', class: 'submit-button' %>
 
 <% end %>

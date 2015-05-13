@@ -13,6 +13,7 @@ $(function() {
 });
 
 var parseRounds = function() {
+	App.game.each(sortClues);
 	var roundOneClues = App.game.slice(0,6);
 	var roundTwoClues = App.game.slice(6,12);
 	var roundThreeClues = App.game.slice(12,13);
@@ -24,6 +25,14 @@ var parseRounds = function() {
 	App.roundThree.set(roundThreeClues);
 	App.startGame(App.roundOne);
 };
+
+var sortClues = function(category) {
+	var clueArray = category.get('clues');
+	var sortedClues = clueArray.sort(function(a,b) {
+		return a.value < b.value ? -1 : 1 
+	});
+	category.set('clues', sortedClues);
+}
 
 App.startGame = function(round) {
 	App.board = new App.Views.Board({collection: round, el: '#board'});

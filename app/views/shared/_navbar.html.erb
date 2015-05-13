@@ -1,0 +1,14 @@
+<div id='navbar'>
+	<h1 class='center'><%= link_to 'Jep-Prep', root_path%></h1>
+	<% if session[:current_user] %>
+		<div id='account-links' class='center'>
+			<span>Welcome back, <%= User.find(session[:current_user]).username %>!<span>
+			<span> | <%= link_to 'Log Out', sessions_path, method: :delete %>
+		</div>
+	<% else %>
+		<div id='account-links' class='center'>
+			<%= link_to 'Sign Up', new_user_path %>
+			<%= link_to 'Log In', sessions_path %>
+		</div>
+	<% end %>
+</div>

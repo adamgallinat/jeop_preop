@@ -20,13 +20,15 @@ request({
 	}
 	seasons.shift();
 	seasons.splice(6,1);
+	// seasons.splice(0,27);
+	// console.log(seasons);
 	requestEachSeason(seasons);
 });
 
 var requestEachSeason = function(seasons) {
 	// seasons.forEach(function(season) {
 		request({
-			url: seasons[30].link,
+			url: seasons[28].link,
 			method: 'GET'
 		}, function(err, res, body) {
 			var $ = cheerio.load(body);
@@ -38,7 +40,7 @@ var requestEachSeason = function(seasons) {
 					airDate = airDate.split('aired')[1].substr(1);
 				}
 				if (linkString.indexOf('showgame') !== -1) {
-					requestEpisode(linkString, seasons[30].number, airDate);
+					requestEpisode(linkString, seasons[28].number, airDate);
 				}
 			}
 		});
@@ -97,12 +99,12 @@ var processFirstRoundClues = function(html, categories) {
 				for (var col = 0; col < 6; col++) {
 					var currentClue = clues[clueIndex];
 					currentClue.category_id = categoryIDs[col];
-					currentClue.value = (row+1) * 100;
+					currentClue.value = (row+1) * 200;
 					cluesToUpload.push(currentClue);
 					clueIndex++;
 				}
 			}
-
+			// console.log(cluesToUpload);
 			Clue.bulkCreate(cluesToUpload);
 		});
 };
@@ -145,12 +147,12 @@ var processSecondRoundClues = function(html, categories) {
 				for (var col = 0; col < 6; col++) {
 					var currentClue = clues[clueIndex];
 					currentClue.category_id = categoryIDs[col];
-					currentClue.value = (row+1) * 200;
+					currentClue.value = (row+1) * 400;
 					cluesToUpload.push(currentClue);
 					clueIndex++;
 				}
 			}
-
+			// cluesToUpload.sort(compareClues);
 			Clue.bulkCreate(cluesToUpload);
 		});
 };
@@ -202,50 +204,4 @@ var returnHashOfClue = function(rawClue) {
 	return response;
 };
 
-// requestEpisode('http://www.j-archive.com/showgame.php?game_id=4860', 30, '2015-08-8');
-
-
-// var processEpisode = function(episodeUrl, seasonNumber, airDate) {
-// 	request({
-// 		url: episodeUrl,
-// 		method: 'GET'
-// 	}, function(err, res, body) {
-// 		$ = cheerio.load(body);
-// 		var first_round_categories = $('#jeopardy_round .category_name');
-// 		var categories = [];
-// 		for (var i = 0; i < first_round_categories.length; i++) {
-// 			var category = {
-// 				title: $(first_round_categories[i]).text(),
-// 				season: seasonNumber,
-// 				air_date: airDate,
-// 				round: 'jeopardy'
-// 			};
-// 			categories.push(category);
-// 		}
-// 		Category.bulkCreate(categories, {returning: true})
-// 			.then(function(savedCategories) {
-// 				var categoryIDs = savedCategories.map(function(savedCategory) {
-// 					return savedCategory.get('id');
-// 				});
-
-// 				var clues = [];
-// 				var first_round_clues = $('#jeopardy_round .clue');
-// 				for (var j = 0; j < first_round_clues.length; j++) {
-// 					clues.push(returnHashOfClue($(first_round_clues[j])));
-// 				}
-				
-// 				var clueIndex = 0;
-// 				var cluesToUpload = [];
-// 				for (var row = 0; row < 5; row++) {
-// 					for (var col = 0; col < 6; col++) {
-// 						var currentClue = clues[clueIndex];
-// 						currentClue.category_id = categoryIDs[col];
-// 						currentClue.value = (row+1) * 100;
-// 						cluesToUpload.push(currentClue);
-// 						clueIndex++;
-// 					}
-// 				}
-// 				Clue.bulkCreate(cluesToUpload);
-// 			});
-// 	});
-// };
+// requestEpisode('http://www.j-archive.com/showgame.php?game_id=4732', 30, '2015-08-8');

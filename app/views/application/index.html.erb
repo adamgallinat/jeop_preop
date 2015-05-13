@@ -1,15 +1,16 @@
-<h1>Welcome to JeopPreop</h1>
 <% if current_user %>
-	<p><span>Welcome back, <%= User.find(session[:current_user]).username %>!<span>
-	<span> | <%= link_to 'Log Out', sessions_path, method: :delete %>
-	</p>
-	<div>
+	<div id='new-game-link'>
 		<%= link_to 'New Game!', games_path %>
 	</div>
 	<div id='score-container'>
+		<h2>Your Scores</h2>
 		<svg id='score-graph'></svg>
 	</div>
 <% else %>
-	<%= link_to 'Sign Up', new_user_path %>
-	<%= link_to 'Log In', sessions_path %>
+	<div id='welcome-page'>
+		<h1>Welcome to Jep-Prep!</h1>
+		<h3>Don't buzz in until Alex is done reading the clue</h3>
+		<h3>You'll see a light when it's time to click your mouse.</h3>
+		<h3>But <span class='bold'>be quick!</span> In real life, other contestants will be buzzing too!</h3>
+	</div>
 <% end %>
