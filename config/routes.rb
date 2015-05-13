@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'new_game' => 'categories#new_game'
   end
 
-  resources :users
+  resources :users, only: [:new, :create]
 
   get 'scores/by_user/:user_id' => 'scores#by_user'
   resources :scores, only: [:create]
