@@ -68,6 +68,8 @@ App.removePoints = function(amount) {
 App.read = function(script, callback) {
 	script = script.replace('<br />', ' ');
 	script = script.replace(/__+/, 'blank');
+	script = script.replace('<del>', '');
+	script = script.replace('</del>', '');
 
 	
 	var speech = new SpeechSynthesisUtterance(script);
@@ -75,7 +77,10 @@ App.read = function(script, callback) {
   speech.default = false;
   speech.voice = App.voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
   speech.lang = 'en-US';
-  speech.onend = callback;
+  speech.addEventListener('end', function() {
+  	callback();
+  });
+  // speech.onend = callback;
   
   window.speechSynthesis.speak(speech);
 };
