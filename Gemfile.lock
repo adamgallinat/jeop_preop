@@ -44,8 +44,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (4.0.5)
-      columnize (= 0.9.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -54,7 +52,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    columnize (0.9.0)
     d3-rails (3.5.5)
       railties (>= 3.1)
     debug_inspector (0.0.2)
@@ -195,7 +192,6 @@ PLATFORMS
 DEPENDENCIES
   backbars
   bcrypt (~> 3.1.7)
-  byebug
   coffee-rails (~> 4.1.0)
   d3-rails
   jbuilder (~> 2.0)
@@ -204,8 +200,8 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.1)
-  rails-assets-backbone!
-  rails-assets-underscore!
+  rails-assets-backbone
+  rails-assets-underscore
   rails_12factor
   rspec-rails
   sass-rails (~> 5.0)
