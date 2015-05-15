@@ -7,6 +7,9 @@ $(function() {
 				$.get('/scores/by_user/' + id)
 					.done(function(scoreData) {
 						scores = scoreData;
+						for (var i = 0; i < scores.length; i++) {
+							scores[i].index = i;
+						}
 						renderScoreGraph(scores);
 					});
 			});
@@ -26,21 +29,27 @@ var renderScoreGraph = function(scores) {
 				left: 50
 			},
 			commasFormatter = d3.format(",.0f"),
-			xRange = d3.time.scale()
-								 .domain([new Date(scores[0].updated_at),
-								 	new Date(scores[scores.length-1].updated_at)])
-								 .rangeRound([MARGINS.left, WIDTH - MARGINS.right]),
+			xRange = d3.scale.linear()
+									 .domain(
+									 	[d3.min(scores, function(d) {
+									 		return 0;
+									 	}),
+									 	d3.max(scores, function(d) {
+									 		return d.index;
+									 	})])
+									 .rangeRound([MARGINS.left, WIDTH - MARGINS.right]),
 			yRange = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom])
-																.domain(
-																	[d3.min(scores, function(d) {
-																		return 0;
-																	}),
-																	d3.max(scores, function(d) {
-																		return d.value;
-																	})]),
+									.domain(
+										[d3.min(scores, function(d) {
+											return 0;
+										}),
+										d3.max(scores, function(d) {
+											return d.value;
+										})]),
 			xAxis = d3.svg.axis()
 										.scale(xRange)
 										.tickSize(3)
+										.ticks((scores.length > 10) ? 10 : scores.length)
 										.tickSubdivide(true),
 			yAxis = d3.svg.axis()
 										.scale(yRange)
@@ -61,8 +70,7 @@ var renderScoreGraph = function(scores) {
 
 		var lineGenerator = d3.svg.line()
 			.x(function(d) {
-				var date = new Date(d.updated_at);
-				return xRange(date);
+				return xRange(d.index);
 			})
 			.y(function(d) {
 				return yRange(d.value);

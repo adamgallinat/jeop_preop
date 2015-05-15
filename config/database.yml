@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: jeop_preop_app_production
-  username: jeop_preop
+  username: root
   password: <%= ENV['JEOP_PREOP_DATABASE_PASSWORD'] %>
