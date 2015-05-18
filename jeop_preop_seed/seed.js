@@ -28,7 +28,7 @@ request({
 var requestEachSeason = function(seasons) {
 	// seasons.forEach(function(season) {
 		request({
-			url: seasons[30].link,
+			url: seasons[16].link,
 			method: 'GET'
 		}, function(err, res, body) {
 			var $ = cheerio.load(body);
@@ -40,7 +40,7 @@ var requestEachSeason = function(seasons) {
 					airDate = airDate.split('aired')[1].substr(1);
 				}
 				if (linkString.indexOf('showgame') !== -1) {
-					requestEpisode(linkString, seasons[30].number, airDate);
+					requestEpisode(linkString, seasons[16].number, airDate);
 				}
 			}
 		});
