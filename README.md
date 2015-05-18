@@ -25,24 +25,29 @@ API Base URL
 Categories by ID
 ----------------
 Sample request
+
 `http://104.131.160.239/api/categories/1214`
 
 Categories by Air Date
 ----------------------
 Sample request
+
 `http://104.131.160.239/api/categories/by_airdate/2015-04-02`
 
 Categories By Season
 --------------------
 Sample request
+
 `http://104.131.160.239/api/categories/by_season/28`
 
 Clues by ID
 -----------
 Sample request
+
 `http://104.131.160.239/api/clues/431`
 
 New Game
 --------
 Sample request
+
 `http://104.131.160.239/api/new_game`
