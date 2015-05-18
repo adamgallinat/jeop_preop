@@ -2,12 +2,14 @@ Rails.application.routes.draw do
   root 'application#index'
 
   namespace :api, defaults:{format: 'json'} do
-    resources :clues, only: [:index, :show]
-    resources :categories, only: [:index, :show]
+    get '/' => 'documentation#index', defaults:{format: 'html'}
+    resources :clues, only: [:show]
+    resources :categories, only: [:show]
     get 'categories/by_season/:id' => 'categories#by_season'
     get 'categories/by_airdate/:date' => 'categories#by_airdate'
     get 'new_game' => 'categories#new_game'
   end
+  
 
   resources :users, only: [:new, :create]
 
