@@ -16,7 +16,6 @@
 
 @font-face {
 	font-family: 'Gyparody';
-	/*src: url(/assets/gyparody_hv.ttf) format('truetype');*/
 	src: url(<%= asset_path 'gyparody_hv.ttf' %>) format('truetype');
 }
 
@@ -128,6 +127,18 @@ input:-webkit-autofill {
     -webkit-box-shadow: 	0 0 0 1000px white inset;
 }
 
+.button {
+	display: 								inline-block;
+	width: 									30%;
+	border: 								4px solid rgb(211,178,0);
+	box-shadow: 						4px 4px black;
+	height: 								60px;
+	font-size: 							28px;
+	background-color: 			#0005CD;
+	color: 									rgb(211,178,0);
+	font-family: 						'korinna';
+}
+
 .field_with_errors input {
 	border-color: 					red;
 }
@@ -145,10 +156,6 @@ input:-webkit-autofill {
   transform: 							translateY(-50%);
   webkit-transform: 			translateY(-50%);
 }
-/*
-#round_one {
-	margin-bottom: 					40px;
-}*/
 
 #board {
 	width: 									90%;
@@ -159,7 +166,6 @@ input:-webkit-autofill {
 
 .category {
 	width: 									16.6%;
-	/*margin: 								3px;*/
 	border-left: 						4px solid black;
 	float: 									left;
 	background-color: 			#0005CD;
@@ -293,6 +299,10 @@ input:-webkit-autofill {
 
 .incorrect {
 	float: 									left;
+}
+
+.final-score {
+	height: 300px;
 }
 
 
