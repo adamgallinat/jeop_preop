@@ -6,6 +6,7 @@ $(function() {
 		});
 		App.clueModal = new App.Views.ClueModal({model: new App.Models.Clue})
 		$('#score').html(0);
+		debugger;
 		window.speechSynthesis.onvoiceschanged = function () {
 			App.voices = speechSynthesis.getVoices();
 		}
@@ -75,7 +76,9 @@ App.read = function(script, callback) {
 	var speech = new SpeechSynthesisUtterance(script);
   var voices = window.speechSynthesis.getVoices();
   speech.default = false;
-  speech.voice = App.voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+  if (App.voices) {
+  	speech.voice = App.voices.filter(function(voice) { return voice.name == 'Alex'; })[0];
+  }
   speech.lang = 'en-US';
   speech.addEventListener('end', function() {
   	callback();
