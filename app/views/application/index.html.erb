@@ -13,5 +13,8 @@
 		<h3>You'll see a light when it's time to click your mouse. Don't buzz too early, or you'll be disqualified for <span class='bold'>one second!</span></h3>
 		<h3>But <span class='bold'>be quick!</span> In real life, other contestants will be buzzing too!</h3>
 		<p><%= link_to 'Use our API', api_path %></p>
+		<% if !request.env['HTTP_USER_AGENT'].include? "Safari" %>
+			<h2>At the moment, Jep-Prep is only compatible with Google Chrome and Safari.</h2>
+		<% end %>
 	</div>
 <% end %>
